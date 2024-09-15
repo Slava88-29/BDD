@@ -1,29 +1,41 @@
 package ru.netology.bdd.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
-    // Рє СЃРѕР¶Р°Р»РµРЅРёСЋ, СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРё РЅРµ РґР°Р»Рё РЅР°Рј СѓРґРѕР±РЅРѕРіРѕ СЃРµР»РµРєС‚РѕСЂР°, РїРѕСЌС‚РѕРјСѓ С‚Р°Рє
+    // к сожалению, разработчики не дали нам удобного селектора, поэтому так
     private ElementsCollection cards = $$(".list__item div");
-    private final String balanceStart = "Р±Р°Р»Р°РЅСЃ: ";
-    private final String balanceFinish = " СЂ.";
+    private final String balanceStart = "баланс: ";
+    private final String balanceFinish = " р.";
 
     public DashboardPage() {
-
+        $("#root").shouldBe(visible);
+//        $("#root").shouldHave(text("Личный кабинет"));
     }
+
     public int getCardBalance(String id) {
-        // TODO: РїРµСЂРµР±СЂР°С‚СЊ РІСЃРµ РєР°СЂС‚С‹ Рё РЅР°Р№С‚Рё РїРѕ Р°С‚СЂРёР±СѓС‚Сѓ data-test-id
+        // TODO: перебрать все карты и найти по атрибуту data-test-id
+        var card = cards.filter(Condition.attribute("data-test-id", id)).get(0);
+        var text = card.should(Condition.visible).getText();
         return extractBalance(text);
 
-          }
+    }
+
     private int extractBalance(String text) {
-        val start = text.indexOf(balanceStart);
-        val finish = text.indexOf(balanceFinish);
-        val value = text.substring(start + balanceStart.length(), finish);
+        var start = text.indexOf(balanceStart);
+        var finish = text.indexOf(balanceFinish);
+        var value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
 
-
+    public void clickDepositButton(String id) {
+        var card = cards.filter(Condition.attribute("data-test-id", id)).get(0);
+        card.should(Condition.visible).$("[data-test-id=action-deposit]").click();
+    }
 }
