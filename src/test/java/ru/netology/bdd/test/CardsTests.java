@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class CardsTest {
-    // спецификация нужна для того, чтобы переиспользовать настройки в разных запросах
+    // СЃРїРµС†РёС„РёРєР°С†РёСЏ РЅСѓР¶РЅР° РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїРµСЂРµРёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅР°СЃС‚СЂРѕР№РєРё РІ СЂР°Р·РЅС‹С… Р·Р°РїСЂРѕСЃР°С…
 
 
     @BeforeEach
@@ -24,7 +24,7 @@ class CardsTest {
     }
 
     @Test
-    @DisplayName("Перевод с карты на карту суммы меньше чем есть на карте")
+    @DisplayName("РџРµСЂРµРІРѕРґ СЃ РєР°СЂС‚С‹ РЅР° РєР°СЂС‚Сѓ СЃСѓРјРјС‹ РјРµРЅСЊС€Рµ С‡РµРј РµСЃС‚СЊ РЅР° РєР°СЂС‚Рµ")
     void shouldTransactionSuccessAmountLessThanOnCard() {
         DashboardPage dashboardPage = new DashboardPage();
         int amount2000 = 2000;
@@ -44,7 +44,7 @@ class CardsTest {
     }
 
     @Test
-    @DisplayName("Перевод с карты на карту суммы больще чем есть на карте")
+    @DisplayName("РџРµСЂРµРІРѕРґ СЃ РєР°СЂС‚С‹ РЅР° РєР°СЂС‚Сѓ СЃСѓРјРјС‹ Р±РѕР»СЊС‰Рµ С‡РµРј РµСЃС‚СЊ РЅР° РєР°СЂС‚Рµ")
     void shouldTransactionSuccessAmountGreaterThanOnCard() {
         DashboardPage dashboardPage = new DashboardPage();
         int amount12000 = 12000;
@@ -64,7 +64,7 @@ class CardsTest {
     }
 
     @Test
-    @DisplayName("Перевод с карты на саму себя")
+    @DisplayName("РџРµСЂРµРІРѕРґ СЃ РєР°СЂС‚С‹ РЅР° СЃР°РјСѓ СЃРµР±СЏ")
     void shouldTransactionSuccessSelf() {
         DashboardPage dashboardPage = new DashboardPage();
         int amount2000 = 2000;
@@ -84,7 +84,7 @@ class CardsTest {
     }
 
     @Test
-    @DisplayName("Перевод на карту суммы меньше одного рубля")
+    @DisplayName("РџРµСЂРµРІРѕРґ РЅР° РєР°СЂС‚Сѓ СЃСѓРјРјС‹ РјРµРЅСЊС€Рµ РѕРґРЅРѕРіРѕ СЂСѓР±Р»СЏ")
     void shouldTransactionSuccessAmountLessOneRuble() {
         DashboardPage dashboardPage = new DashboardPage();
         double amount0_1 = 0.1;

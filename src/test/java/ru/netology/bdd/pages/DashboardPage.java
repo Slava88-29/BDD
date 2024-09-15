@@ -9,18 +9,18 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
-    // к сожалению, разработчики не дали нам удобного селектора, поэтому так
+    // Рє СЃРѕР¶Р°Р»РµРЅРёСЋ, СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРё РЅРµ РґР°Р»Рё РЅР°Рј СѓРґРѕР±РЅРѕРіРѕ СЃРµР»РµРєС‚РѕСЂР°, РїРѕСЌС‚РѕРјСѓ С‚Р°Рє
     private ElementsCollection cards = $$(".list__item div");
-    private final String balanceStart = "баланс: ";
-    private final String balanceFinish = " р.";
+    private final String balanceStart = "Р±Р°Р»Р°РЅСЃ: ";
+    private final String balanceFinish = " СЂ.";
 
     public DashboardPage() {
         $("#root").shouldBe(visible);
-//        $("#root").shouldHave(text("Личный кабинет"));
+//        $("#root").shouldHave(text("Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚"));
     }
 
     public int getCardBalance(String id) {
-        // TODO: перебрать все карты и найти по атрибуту data-test-id
+        // TODO: РїРµСЂРµР±СЂР°С‚СЊ РІСЃРµ РєР°СЂС‚С‹ Рё РЅР°Р№С‚Рё РїРѕ Р°С‚СЂРёР±СѓС‚Сѓ data-test-id
         var card = cards.filter(Condition.attribute("data-test-id", id)).get(0);
         var text = card.should(Condition.visible).getText();
         return extractBalance(text);
