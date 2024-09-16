@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import ru.netology.bdd.models.User;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -21,9 +22,9 @@ public class LoginPage {
        open("http://localhost:9999");
     }
 
-    public void loginIn() {
-        login.should(Condition.visible).setValue("vasya");
-        password.should(Condition.visible).setValue("qwerty123");
+    public void loginIn(User user) {
+        login.should(Condition.visible).setValue(user.getLogin());
+        password.should(Condition.visible).setValue(user.getPassword());
         button.should(Condition.visible).click();
     }
 

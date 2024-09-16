@@ -2,21 +2,22 @@ package ru.netology.bdd.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage {
     // к сожалению, разработчики не дали нам удобного селектора, поэтому так
     private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
+    private final SelenideElement main =  $x("//h2[contains(text(),'Личный кабинет')]");
 
     public DashboardPage() {
-        $("#root").shouldBe(visible);
-//        $("#root").shouldHave(text("Личный кабинет"));
+        main.shouldBe(visible);
+//
     }
 
     public int getCardBalance(String id) {
