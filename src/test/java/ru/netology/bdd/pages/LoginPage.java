@@ -1,12 +1,8 @@
 package ru.netology.bdd.pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import ru.netology.bdd.models.User;
+import ru.netology.bdd.utilus.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -22,7 +18,7 @@ public class LoginPage {
        open("http://localhost:9999");
     }
 
-    public void loginIn(User user) {
+    public void loginIn(DataHelper.AuthInfo user) {
         login.should(Condition.visible).setValue(user.getLogin());
         password.should(Condition.visible).setValue(user.getPassword());
         button.should(Condition.visible).click();

@@ -3,32 +3,27 @@ package ru.netology.bdd.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.netology.bdd.models.Card;
-import ru.netology.bdd.models.User;
 import ru.netology.bdd.pages.CardPage;
 import ru.netology.bdd.pages.DashboardPage;
 import ru.netology.bdd.pages.LoginPage;
 import ru.netology.bdd.pages.VerifyPage;
 import ru.netology.bdd.utilus.DataHelper;
 
-import java.util.List;
-import java.util.Random;
-
-import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class CardsTest {
     // спецификация нужна для того, чтобы переиспользовать настройки в разных запросах
 
+    public DataHelper.AuthInfo user=DataHelper.getAuthInfo();
+    public DataHelper.VerificationCode code=DataHelper.getVerificationCodeFor(user);
 
-    public User user = DataHelper.getUser();
-    public Card card1=user.getCards().get(0);
-    public Card card2=user.getCards().get(1);
+    public DataHelper.Card card1=DataHelper.getCard1();
+    public DataHelper.Card card2=DataHelper.getCard2();
     @BeforeEach
     void setup() {
         new LoginPage().loginIn(user);
-        new VerifyPage().verifyIn(user);
+        new VerifyPage().verifyIn(code);
 
     }
 
